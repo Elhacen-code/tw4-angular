@@ -21,7 +21,12 @@
       <span>All users </span>
     </div>
     <div class="flex">
-      <input type="text" placeholder=" 🔍 Search" class="border-2 text-gray-500 w-50 ml-3 pl-3 border-gray-300 rounded-lg w-1/4 h-10 ml-12 mt-3">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch($event)"
+        placeholder=" 🔍 Search"
+        class="border-2 text-gray-500 w-50 ml-3 pl-3 border-gray-300 rounded-lg w-1/4 h-10 ml-12 mt-3">
       <input type="text" placeholder=" Filters" class="border-2 text-gray-500 w-30 p-4 border-gray-300 rounded-lg w-1/4 h-10 ml-12 mt-3">
       <button class="bg-black mt-3 ml-7 text-white rounded-md w-25 h-10 p-1"> + Add user</button>
     </div>
@@ -38,7 +43,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of filteredUsers">
           <td class="px-6 py-4 whitespace-nowrap flex items-center space-x-3">
             <img title="user.fullName" class="h-10 w-10 rounded-full" [src]="user.avatarUrl" [alt]="user.fullName">
             <span class="text-sm font-medium text-gray-900">{{ user.fullName }}</span>
