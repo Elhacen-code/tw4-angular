@@ -1,0 +1,59 @@
+<div class="w-4/5 bg-white w-370 h-auto rounded-2xl m-3">
+  <div class="flex justify-between">
+    <div class="flex items-center mx-12 my-8">
+      <img class="w-7 h-7" src="menu.png" alt="">
+      <img class="w-7 w-7" src="next.png" alt="">
+      <span class="text-gray-500 text-md">Sisyphus ventures</span>
+      <img class="w-7 w-7" src="next.png" alt="">
+      <span class="text-gray-800 font-bold text-md">User management</span>
+    </div>
+    <div class="flex items-center ml-60">
+      <img class="w-7 h-7" src="user.jpeg" alt="">
+      <span class="text-md ml-3 pr-2 font-bold">Elhassen Sidi Mahmoud</span>
+    </div>
+  </div>
+  <div class="grid mx-12 my-8">
+    <span class="text-2xl font-bold">User management</span>
+    <span class="text-md text-gray-500">Manage your team members and their account permissions here.</span>
+  </div>
+  <div class="flex justify-between items-center mx-12 my-8">
+    <div>
+      <span>All users </span>
+    </div>
+    <div class="flex">
+      <input type="text" placeholder=" 🔍 Search" class="border-2 text-gray-500 w-50 ml-3 border-gray-300 rounded-lg w-1/4 h-10 ml-12 mt-3">
+      <input type="text" placeholder=" Filters" class="border-2 text-gray-500 w-30 p-4 border-gray-300 rounded-lg w-1/4 h-10 ml-12 mt-3">
+      <button class="bg-black mt-3 ml-7 text-white rounded-md w-25 h-10 p-1"> + Add user</button>
+    </div>
+  </div>
+  <div class="overflow-x-auto rounded-lg shadow-md mx-12 my-8">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-100 ">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-700  uppercase tracking-wider">User name </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-700  uppercase tracking-wider">Role</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-700  uppercase tracking-wider">Last active</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-700  uppercase tracking-wider">Date added</th>
+          <th class="px-6 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let user of users">
+          <td class="px-6 py-4 whitespace-nowrap flex items-center space-x-3">
+            <img title="user.fullName" class="h-10 w-10 rounded-full" [src]="user.avatarUrl" [alt]="user.fullName">
+            <span class="text-sm font-medium text-gray-900">{{ user.fullName }}</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ user.role }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ user.lastLogin }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ user.hireDate }}</td>
+          <td class="px-6 py-4 text-right text-sm font-medium">
+            <a href="#" class="text-blue-500 hover:text-blue-900">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-center">
+    <span class="text-xs ">&copy; 2022 Elh11hmouD</span>
+  </div>
+</div>
