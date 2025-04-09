@@ -2,6 +2,8 @@
 
 This project is an Angular application that uses Tailwind CSS for styling. It's built with Angular 18 and incorporates modern web development practices.
 
+![Project Demo](public/demo.png)
+
 ## 🚀 Features
 
 - Angular 18
