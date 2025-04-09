@@ -15,7 +15,7 @@
             <li>
               <div class="flex items-center text-md text-gray-500 mt-3">
                 <img class="w-9 w-9 rounded-2xl  mr-3" src="dashboard.png" alt="">
-                <a routerLink="/home">Dashboard</a>
+                <a routerLink="/dashboard">Dashboard</a>
               </div>
             </li>
             <li>
@@ -58,7 +58,7 @@
             <li>
               <div class="flex items-center text-md text-gray-500 mt-3">
                 <img class="w-9 w-9 rounded-2xl  mr-3" src="usermnm.png" alt="">
-                <a routerLink="/home">User management</a>
+                <a routerLink="/users">User management</a>
               </div>
             </li>
             <li>
@@ -107,6 +107,6 @@
         </div>
       </div>
     </div>
-    <app-user-list></app-user-list>
+    <ng-content></ng-content>
   </div>
 </div>

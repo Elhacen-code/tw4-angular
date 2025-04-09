@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { UserListComponent } from '../user-list/user-list.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',

@@ -1,0 +1,61 @@
+<div class="w-4/5 bg-white w-370 h-auto rounded-2xl m-3">
+  <div class="flex justify-between">
+    <div class="flex items-center mx-12 my-8">
+      <img class="w-7 h-7" src="menu.png" alt="">
+      <img class="w-7 w-7" src="next.png" alt="">
+      <span class="text-gray-500 text-md">Sisyphus ventures</span>
+      <img class="w-7 w-7" src="next.png" alt="">
+      <span class="text-gray-800 font-bold text-md">Dashboard</span>
+    </div>
+    <div class="flex items-center ml-60">
+      <img class="w-7 h-7" src="user.jpeg" alt="">
+      <span class="text-md ml-3 pr-2 font-bold">Elhassen Sidi Mahmoud</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 mx-12 my-8">
+    <!-- Line Chart -->
+    <div class="bg-white p-4 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-4">User Growth</h3>
+      <div class="h-64">
+        <canvas baseChart
+          [data]="lineChartData"
+          [type]="'line'">
+        </canvas>
+      </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="bg-white p-4 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-4">Team Distribution</h3>
+      <div class="h-64">
+        <canvas baseChart
+          [data]="barChartData"
+          [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="bg-white p-4 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-4">User Status</h3>
+      <div class="h-64">
+        <canvas baseChart
+          [data]="pieChartData"
+          [type]="'pie'">
+        </canvas>
+      </div>
+    </div>
+
+    <!-- Doughnut Chart -->
+    <div class="bg-white p-4 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-4">Project Status</h3>
+      <div class="h-64">
+        <canvas baseChart
+          [data]="doughnutChartData"
+          [type]="'doughnut'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
