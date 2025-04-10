@@ -3,12 +3,25 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
+import { authGuard, loginGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'users', component: UserListComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [loginGuard]  // Redirect to dashboard if already authenticated
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard]  // Require authentication
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [authGuard]  // Require authentication
+  },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }  // Default route to dashboard
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

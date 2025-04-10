@@ -1,9 +1,13 @@
-<div class="bg-gray-300 w-full h-screen">
-  <div class="flex bg-gray-100 w-500 h-auto rounded-2xl mx-10">
-    <app-sidebar>
-      <div class="w-full">
-        <router-outlet></router-outlet>
-      </div>
-    </app-sidebar>
+@if (router.url === '/login') {
+  <router-outlet></router-outlet>
+} @else {
+  <div class="bg-gray-300 w-full h-screen">
+    <div class="flex bg-gray-100 w-500 h-auto rounded-2xl mx-10">
+      <app-sidebar>
+        <div class="w-full">
+          <router-outlet></router-outlet>
+        </div>
+      </app-sidebar>
+    </div>
   </div>
-</div>
+}

@@ -1,5 +1,5 @@
 // login.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -22,6 +22,13 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  ngOnInit() {
+    // Redirect to dashboard if already logged in
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit() {
     if (!this.username || !this.password) {
@@ -34,14 +41,12 @@ export class LoginComponent {
 
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
-        // Handle successful login
-        console.log('Login successful', response);
+        console.log('Login successful');
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        // Handle login error
         console.error('Login failed', error);
-        this.errorMessage = error.error.message || 'Login failed. Please try again.';
+        this.errorMessage = error.error?.message || 'Login failed. Please try again.';
         this.isLoading = false;
       },
       complete: () => {
