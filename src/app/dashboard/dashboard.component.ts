@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,7 +59,7 @@ export class DashboardComponent implements OnInit {
     ]
   };
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(users => {
@@ -97,5 +99,10 @@ export class DashboardComponent implements OnInit {
       }
     });
     return monthlyData;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

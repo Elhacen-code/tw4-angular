@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -20,7 +22,7 @@ export class UserListComponent implements OnInit {
   roles: string[] = [];
   dates: string[] = ['all', 'Today', 'Yesterday', 'Last 7 days', 'Last 30 days', 'Last 90 days'];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(users => {
@@ -82,5 +84,10 @@ export class UserListComponent implements OnInit {
       default:
         return true;
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
