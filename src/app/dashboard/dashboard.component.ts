@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,13 +12,18 @@ import { NgChartsModule } from 'ng2-charts';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
-  // Line Chart
+  users: User[] = [];
+  totalUsers: number = 0;
+  activeUsers: number = 0;
+  rolesDistribution: { [key: string]: number } = {};
+
+  // Line Chart - User Growth
   lineChartData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
       {
         label: 'Users',
-        data: [65, 59, 80, 81, 56, 55],
+        data: [0, 0, 0, 0, 0, 0],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
@@ -24,13 +31,13 @@ export class DashboardComponent implements OnInit {
     ]
   };
 
-  // Bar Chart
+  // Bar Chart - Roles Distribution
   barChartData = {
-    labels: ['Backend', 'Frontend', 'DevOps', 'QA', 'Design'],
+    labels: [] as string[],
     datasets: [
       {
         label: 'Team Members',
-        data: [12, 19, 3, 5, 2],
+        data: [] as number[],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -50,50 +57,45 @@ export class DashboardComponent implements OnInit {
     ]
   };
 
-  // Pie Chart
-  pieChartData = {
-    labels: ['Active', 'Inactive', 'On Leave'],
-    datasets: [
-      {
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 206, 86, 0.2)'
-        ],
-        borderColor: [
-          'rgba(75, 192, 192, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(255, 206, 86, 1)'
-        ],
-        borderWidth: 1
-      }
-    ]
-  };
-
-  // Doughnut Chart
-  doughnutChartData = {
-    labels: ['Completed', 'In Progress', 'Pending'],
-    datasets: [
-      {
-        data: [70, 20, 10],
-        backgroundColor: [
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(255, 99, 132, 0.2)'
-        ],
-        borderColor: [
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(255, 99, 132, 1)'
-        ],
-        borderWidth: 1
-      }
-    ]
-  };
-
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUsers().subscribe(users => {
+      this.users = users;
+      this.totalUsers = users.length;
+      this.updateCharts();
+    });
+  }
+
+  private updateCharts(): void {
+    // Calculate active users (using enabled status)
+    this.activeUsers = this.users.filter(user => user.enabled).length;
+
+    // Update roles distribution
+    this.rolesDistribution = this.users.reduce((acc, user) => {
+      const roleName = user.role?.name || 'No Role';
+      acc[roleName] = (acc[roleName] || 0) + 1;
+      return acc;
+    }, {} as { [key: string]: number });
+
+    // Update bar chart data
+    this.barChartData.labels = Object.keys(this.rolesDistribution);
+    this.barChartData.datasets[0].data = Object.values(this.rolesDistribution);
+
+    // Update line chart data (using createdAt dates)
+    const monthlyGrowth = this.calculateMonthlyGrowth();
+    this.lineChartData.datasets[0].data = monthlyGrowth;
+  }
+
+  private calculateMonthlyGrowth(): number[] {
+    const monthlyData = [0, 0, 0, 0, 0, 0];
+    this.users.forEach(user => {
+      const createdDate = new Date(user.createdAt);
+      const monthIndex = createdDate.getMonth();
+      if (monthIndex >= 0 && monthIndex < 6) {
+        monthlyData[monthIndex]++;
+      }
+    });
+    return monthlyData;
   }
 }

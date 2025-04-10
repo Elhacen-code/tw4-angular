@@ -9,83 +9,193 @@ export class UserService {
   private users: User[] = [
     {
       id: 1,
-      fullName: 'Ahmed Sidi',
-      role: 'Backend Developer',
-      lastLogin: '3 days ago',
-      hireDate: 'Mar 25, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Ahmed+Sidi&background=4f46e5&color=fff'
+      username: 'ahmed.sidi',
+      email: 'ahmed.sidi@example.com',
+      nni: '123456789',
+      phoneNumber: '1234567890',
+      firstName: 'Ahmed',
+      lastName: 'Sidi',
+      gender: 'Male',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1990-01-01',
+      role: {
+        id: 1,
+        name: 'Backend Developer'
+      },
+      createdAt: '2025-03-25T00:00:00',
+      updatedAt: '2025-03-25T00:00:00'
     },
     {
       id: 2,
-      fullName: 'Fatimetou Ali',
-      role: 'UI/UX Designer',
-      lastLogin: 'Today',
-      hireDate: 'Mar 30, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Fatima+Ly&background=1e40af&color=fff'
+      username: 'fatimetou.ali',
+      email: 'fatimetou.ali@example.com',
+      nni: '987654321',
+      phoneNumber: '0987654321',
+      firstName: 'Fatimetou',
+      lastName: 'Ali',
+      gender: 'Female',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1992-02-02',
+      role: {
+        id: 2,
+        name: 'UI/UX Designer'
+      },
+      createdAt: '2025-03-30T00:00:00',
+      updatedAt: '2025-03-30T00:00:00'
     },
     {
       id: 3,
-      fullName: 'Khadijetou Admed',
-      role: 'QA Engineer',
-      lastLogin: '5 days ago',
-      hireDate: 'Mar 21, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Khadija+Ba&background=047857&color=fff'
+      username: 'khadijetou.ahmed',
+      email: 'khadijetou.ahmed@example.com',
+      nni: '456789123',
+      phoneNumber: '4567891230',
+      firstName: 'Khadijetou',
+      lastName: 'Ahmed',
+      gender: 'Female',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1993-03-03',
+      role: {
+        id: 3,
+        name: 'QA Engineer'
+      },
+      createdAt: '2025-03-21T00:00:00',
+      updatedAt: '2025-03-21T00:00:00'
     },
     {
       id: 4,
-      fullName: 'Ismail Saleck',
-      role: 'DevOps Engineer',
-      lastLogin: '1 week ago',
-      hireDate: 'Mar 20, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Ismail+Saleck&background=059669&color=fff'
+      username: 'ismail.saleck',
+      email: 'ismail.saleck@example.com',
+      nni: '789123456',
+      phoneNumber: '7891234560',
+      firstName: 'Ismail',
+      lastName: 'Saleck',
+      gender: 'Male',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1994-04-04',
+      role: {
+        id: 4,
+        name: 'DevOps Engineer'
+      },
+      createdAt: '2025-03-20T00:00:00',
+      updatedAt: '2025-03-20T00:00:00'
     },
     {
       id: 5,
-      fullName: 'Souleymane Med',
-      role: 'Frontend Dev',
-      lastLogin: 'Yesterday',
-      hireDate: 'Mar 29, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Souleymane+Diallo&background=7c3aed&color=fff'
+      username: 'souleymane.med',
+      email: 'souleymane.med@example.com',
+      nni: '321654987',
+      phoneNumber: '3216549870',
+      firstName: 'Souleymane',
+      lastName: 'Med',
+      gender: 'Male',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1995-05-05',
+      role: {
+        id: 5,
+        name: 'Frontend Dev'
+      },
+      createdAt: '2025-03-29T00:00:00',
+      updatedAt: '2025-03-29T00:00:00'
     },
     {
       id: 6,
-      fullName: 'Mariam Ali',
-      role: 'Project Manager',
-      lastLogin: '2 weeks ago',
-      hireDate: 'Mar 15, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Mariam+Kane&background=b91c1c&color=fff'
+      username: 'mariam.ali',
+      email: 'mariam.ali@example.com',
+      nni: '654987321',
+      phoneNumber: '6549873210',
+      firstName: 'Mariam',
+      lastName: 'Ali',
+      gender: 'Female',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1996-06-06',
+      role: {
+        id: 6,
+        name: 'Project Manager'
+      },
+      createdAt: '2025-03-15T00:00:00',
+      updatedAt: '2025-03-15T00:00:00'
     },
     {
       id: 7,
-      fullName: 'Mohamed Elhacen',
-      role: 'Tech Lead',
-      lastLogin: 'Today',
-      hireDate: 'Apr 1, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Mohamed+Elhacen&background=2563eb&color=fff'
+      username: 'mohamed.elhacen',
+      email: 'mohamed.elhacen@example.com',
+      nni: '987321654',
+      phoneNumber: '9873216540',
+      firstName: 'Mohamed',
+      lastName: 'Elhacen',
+      gender: 'Male',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1997-07-07',
+      role: {
+        id: 7,
+        name: 'Tech Lead'
+      },
+      createdAt: '2025-04-01T00:00:00',
+      updatedAt: '2025-04-01T00:00:00'
     },
     {
       id: 8,
-      fullName: 'Aminetou Khaled Sow',
-      role: 'Data Scientist',
-      lastLogin: '4 days ago',
-      hireDate: 'Mar 27, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Aminata+Sow&background=ea580c&color=fff'
+      username: 'aminetou.khaled',
+      email: 'aminetou.khaled@example.com',
+      nni: '123789456',
+      phoneNumber: '1237894560',
+      firstName: 'Aminetou',
+      lastName: 'Khaled',
+      gender: 'Female',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1998-08-08',
+      role: {
+        id: 8,
+        name: 'Data Scientist'
+      },
+      createdAt: '2025-03-27T00:00:00',
+      updatedAt: '2025-03-27T00:00:00'
     },
     {
       id: 9,
-      fullName: 'Yacoub Dah',
-      role: 'Mobile Dev',
-      lastLogin: '6 hours ago',
-      hireDate: 'Mar 31, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Yacoub+Diop&background=10b981&color=fff'
+      username: 'yacoub.diop',
+      email: 'yacoub.diop@example.com',
+      nni: '456123789',
+      phoneNumber: '4561237890',
+      firstName: 'Yacoub',
+      lastName: 'Diop',
+      gender: 'Male',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '1999-09-09',
+      role: {
+        id: 9,
+        name: 'Mobile Dev'
+      },
+      createdAt: '2025-03-31T00:00:00',
+      updatedAt: '2025-03-31T00:00:00'
     },
     {
       id: 10,
-      fullName: 'Zeinab Sidi',
-      role: 'Scrum Master',
-      lastLogin: '1 month ago',
-      hireDate: 'Mar 01, 2025',
-      avatarUrl: 'https://ui-avatars.com/api/?name=Zeinab+Mint&background=8b5cf6&color=fff'
+      username: 'zeinab.mint',
+      email: 'zeinab.mint@example.com',
+      nni: '789456123',
+      phoneNumber: '7894561230',
+      firstName: 'Zeinab',
+      lastName: 'Mint',
+      gender: 'Female',
+      address: 'Nouakchott',
+      enabled: true,
+      birthDate: '2000-10-10',
+      role: {
+        id: 10,
+        name: 'Scrum Master'
+      },
+      createdAt: '2025-03-01T00:00:00',
+      updatedAt: '2025-03-01T00:00:00'
     }
   ];
 

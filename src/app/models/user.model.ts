@@ -1,8 +1,20 @@
 export interface User {
   id: number;
-  fullName: string;
-  role: string;
-  lastLogin: string;
-  hireDate: string;
-  avatarUrl: string;
+  username: string;
+  email: string;
+  password?: string;
+  nni: string;
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  address: string;
+  enabled: boolean;
+  birthDate: string;
+  role: {
+    id: number;
+    name: string;
+  };
+  createdAt: string;
+  updatedAt: string;
 }

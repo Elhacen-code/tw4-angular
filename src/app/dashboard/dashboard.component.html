@@ -1,4 +1,4 @@
-<div class="w-4/5 bg-white w-370 h-auto rounded-2xl m-3">
+<div class="w-4/5 bg-white w-370 h-290 rounded-2xl m-3">
   <div class="flex justify-between">
     <div class="flex items-center mx-12 my-8">
       <img class="w-7 h-7" src="menu.png" alt="">
@@ -32,28 +32,6 @@
         <canvas baseChart
           [data]="barChartData"
           [type]="'bar'">
-        </canvas>
-      </div>
-    </div>
-
-    <!-- Pie Chart -->
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-lg font-semibold mb-4">User Status</h3>
-      <div class="h-64">
-        <canvas baseChart
-          [data]="pieChartData"
-          [type]="'pie'">
-        </canvas>
-      </div>
-    </div>
-
-    <!-- Doughnut Chart -->
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-lg font-semibold mb-4">Project Status</h3>
-      <div class="h-64">
-        <canvas baseChart
-          [data]="doughnutChartData"
-          [type]="'doughnut'">
         </canvas>
       </div>
     </div>
