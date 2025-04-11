@@ -11,11 +11,54 @@
       <img class="w-7 h-7" src="user.jpeg" alt="">
       <span class="text-md ml-3 pr-2 font-bold">Elhassen Sidi Mahmoud</span>
     </div> -->
-    <div class="flex items-center mr-12">
+    <!-- <div class="flex items-center mr-12">
       <button (click)="logout()"
         class="ml-40 bg-red-700 hover:bg-red-800 w-25 h-10 text-white px-3 py-1 rounded-md text-sm">
         Logout
       </button>
+    </div> -->
+    <div class="flex items-center mr-12 relative">
+      <button
+        (click)="toggleDropdown()"
+        class="flex items-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-full border border-gray-300 focus:outline-none"
+      >
+        <div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center">
+          <span class="text-indigo-600 font-semibold">EH</span>
+        </div>
+        <!-- <span class="text-sm font-medium">Elhassen Sidi</span> -->
+        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+
+      @if (isDropdownOpen) {
+        <div class="absolute right-0 top-12 mt-2 w-46 rounded-md shadow-lg bg-white ring-1 ring-white ring-opacity-5">
+          <div class="py-5 w-20" role="menu">
+            <button
+              (click)="viewProfile()"
+              class="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+            >
+              <svg class="mr-3 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              Profile
+            </button>
+            <button
+              (click)="logout()"
+              class="flex items-center w-full px-4 py-2 text-sm text-red-700 hover:bg-gray-100"
+              role="menuitem"
+            >
+              <svg class="mr-3 h-5 w-5 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              Logout
+            </button>
+          </div>
+        </div>
+      }
     </div>
   </div>
   <div class="grid mx-12 my-8">
@@ -27,17 +70,11 @@
       <span>All users </span>
     </div>
     <div class="flex">
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        (input)="onSearch($event)"
-        placeholder=" 🔍 Search"
+      <input type="text" [(ngModel)]="searchTerm" (input)="onSearch($event)" placeholder=" 🔍 Search"
         class="border-2 text-gray-500 w-50 ml-3 pl-3 border-gray-300 rounded-lg w-1/4 h-10 ml-12 mt-3">
 
       <div class="relative ml-12 mt-3">
-        <select title="Role"
-          [(ngModel)]="selectedRole"
-          (change)="onRoleFilterChange(selectedRole)"
+        <select title="Role" [(ngModel)]="selectedRole" (change)="onRoleFilterChange(selectedRole)"
           class="border-2 text-gray-500 border-gray-300 rounded-lg w-40 h-10 pl-3 pr-8 appearance-none">
           <option value="all">All Roles</option>
           <option *ngFor="let role of roles" [value]="role" [selected]="role === selectedRole">
@@ -46,15 +83,13 @@
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
         </div>
       </div>
 
       <div class="relative ml-12 mt-3">
-        <select title="Date"
-          [(ngModel)]="selectedDate"
-          (change)="onDateFilterChange(selectedDate)"
+        <select title="Date" [(ngModel)]="selectedDate" (change)="onDateFilterChange(selectedDate)"
           class="border-2 text-gray-500 border-gray-300 rounded-lg w-40 h-10 pl-3 pr-8 appearance-none">
           <option *ngFor="let date of dates" [value]="date" [selected]="date === selectedDate">
             {{ date }}
@@ -62,7 +97,7 @@
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
         </div>
       </div>
@@ -84,7 +119,9 @@
       <tbody class="bg-white divide-y divide-gray-200">
         <tr *ngFor="let user of filteredUsers">
           <td class="px-6 py-4 whitespace-nowrap flex items-center space-x-3">
-            <img title="avatar" class="h-10 w-10 rounded-full" [src]="'https://ui-avatars.com/api/?name=' + user.firstName + '+' + user.lastName + '&background=4f46e5&color=fff'" [alt]="user.firstName + ' ' + user.lastName">
+            <img title="avatar" class="h-10 w-10 rounded-full"
+              [src]="'https://ui-avatars.com/api/?name=' + user.firstName + '+' + user.lastName + '&background=4f46e5&color=fff'"
+              [alt]="user.firstName + ' ' + user.lastName">
             <span class="text-sm font-medium text-gray-900">{{ user.firstName }} {{ user.lastName }}</span>
           </td>
           <td class="px-6 py-4 text-sm text-gray-500">{{ user.role.name }}</td>

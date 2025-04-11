@@ -46,6 +46,7 @@ export class ProductComponent {
   selectedCategory: string = 'all';
   selectedDate: string = 'All Time';
   filteredProducts = [...this.products];
+  isDropdownOpen = false;
 
   categories = ['Electronics', 'Clothing', 'Books', 'Sports'];
   dates = ['All Time', 'Last 7 Days', 'Last 30 Days', 'Last 3 Months'];
@@ -96,8 +97,19 @@ export class ProductComponent {
     });
   }
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  viewProfile() {
+    // Navigate to profile page
+    this.router.navigate(['/profile']);
+    this.isDropdownOpen = false;
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+    this.isDropdownOpen = false;
   }
 }

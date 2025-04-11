@@ -58,6 +58,8 @@ export class DashboardComponent implements OnInit {
       }
     ]
   };
+  isDropdownOpen = false;
+
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 
@@ -104,5 +106,15 @@ export class DashboardComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  viewProfile() {
+    // Navigate to profile page
+    this.router.navigate(['/profile']);
+    this.isDropdownOpen = false;
   }
 }

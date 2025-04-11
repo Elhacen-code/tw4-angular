@@ -21,6 +21,8 @@ export class UserListComponent implements OnInit {
   selectedDate: string = 'all';
   roles: string[] = [];
   dates: string[] = ['all', 'Today', 'Yesterday', 'Last 7 days', 'Last 30 days', 'Last 90 days'];
+  isDropdownOpen = false;
+
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 
@@ -89,5 +91,14 @@ export class UserListComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  viewProfile() {
+    // Navigate to profile page
+    this.router.navigate(['/profile']);
+    this.isDropdownOpen = false;
   }
 }
